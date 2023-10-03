@@ -47,7 +47,7 @@ type VpcV1 struct {
 	generation *int64
 
 	// The API version, in format `YYYY-MM-DD`. For the API behavior documented here, specify any date between `2022-09-13`
-	// and `2023-08-18`.
+	// and `2023-09-18`.
 	Version *string
 }
 
@@ -64,7 +64,7 @@ type VpcV1Options struct {
 	Authenticator core.Authenticator
 
 	// The API version, in format `YYYY-MM-DD`. For the API behavior documented here, specify any date between `2022-09-13`
-	// and `2023-08-18`.
+	// and `2023-09-18`.
 	Version *string
 }
 
@@ -122,7 +122,7 @@ func NewVpcV1(options *VpcV1Options) (service *VpcV1, err error) {
 	}
 
 	if options.Version == nil {
-		options.Version = core.StringPtr("2023-08-08")
+		options.Version = core.StringPtr("2023-09-18")
 	}
 
 	service = &VpcV1{
@@ -4719,7 +4719,7 @@ func (vpc *VpcV1) CreateInstanceTemplateWithContext(ctx context.Context, createI
 
 	builder.AddQuery("version", fmt.Sprint(*vpc.Version))
 	builder.AddQuery("generation", fmt.Sprint(*vpc.generation))
-
+	builder.AddQuery("maturity", "beta")
 	_, err = builder.SetBodyContentJSON(createInstanceTemplateOptions.InstanceTemplatePrototype)
 	if err != nil {
 		return
@@ -4838,7 +4838,7 @@ func (vpc *VpcV1) GetInstanceTemplateWithContext(ctx context.Context, getInstanc
 
 	builder.AddQuery("version", fmt.Sprint(*vpc.Version))
 	builder.AddQuery("generation", fmt.Sprint(*vpc.generation))
-
+	builder.AddQuery("maturity", "beta")
 	request, err := builder.Build()
 	if err != nil {
 		return
@@ -4964,6 +4964,7 @@ func (vpc *VpcV1) ListInstancesWithContext(ctx context.Context, listInstancesOpt
 
 	builder.AddQuery("version", fmt.Sprint(*vpc.Version))
 	builder.AddQuery("generation", fmt.Sprint(*vpc.generation))
+	builder.AddQuery("maturity", "beta")
 	if listInstancesOptions.Start != nil {
 		builder.AddQuery("start", fmt.Sprint(*listInstancesOptions.Start))
 	}
@@ -5065,6 +5066,7 @@ func (vpc *VpcV1) CreateInstanceWithContext(ctx context.Context, createInstanceO
 
 	builder.AddQuery("version", fmt.Sprint(*vpc.Version))
 	builder.AddQuery("generation", fmt.Sprint(*vpc.generation))
+	builder.AddQuery("maturity", "beta")
 
 	_, err = builder.SetBodyContentJSON(createInstanceOptions.InstancePrototype)
 	if err != nil {
@@ -5184,6 +5186,8 @@ func (vpc *VpcV1) GetInstanceWithContext(ctx context.Context, getInstanceOptions
 	}
 	builder.AddHeader("Accept", "application/json")
 
+	builder.AddQuery("maturity", "beta")
+
 	builder.AddQuery("version", fmt.Sprint(*vpc.Version))
 	builder.AddQuery("generation", fmt.Sprint(*vpc.generation))
 
@@ -5251,6 +5255,7 @@ func (vpc *VpcV1) UpdateInstanceWithContext(ctx context.Context, updateInstanceO
 
 	builder.AddQuery("version", fmt.Sprint(*vpc.Version))
 	builder.AddQuery("generation", fmt.Sprint(*vpc.generation))
+	builder.AddQuery("maturity", "beta")
 
 	_, err = builder.SetBodyContentJSON(updateInstanceOptions.InstancePatch)
 	if err != nil {
@@ -5541,6 +5546,7 @@ func (vpc *VpcV1) ListInstanceDisksWithContext(ctx context.Context, listInstance
 
 	builder.AddQuery("version", fmt.Sprint(*vpc.Version))
 	builder.AddQuery("generation", fmt.Sprint(*vpc.generation))
+	builder.AddQuery("maturity", "beta")
 
 	request, err := builder.Build()
 	if err != nil {
@@ -5605,6 +5611,7 @@ func (vpc *VpcV1) GetInstanceDiskWithContext(ctx context.Context, getInstanceDis
 
 	builder.AddQuery("version", fmt.Sprint(*vpc.Version))
 	builder.AddQuery("generation", fmt.Sprint(*vpc.generation))
+	builder.AddQuery("maturity", "beta")
 
 	request, err := builder.Build()
 	if err != nil {
@@ -5670,6 +5677,7 @@ func (vpc *VpcV1) UpdateInstanceDiskWithContext(ctx context.Context, updateInsta
 
 	builder.AddQuery("version", fmt.Sprint(*vpc.Version))
 	builder.AddQuery("generation", fmt.Sprint(*vpc.generation))
+	builder.AddQuery("maturity", "beta")
 
 	_, err = builder.SetBodyContentJSON(updateInstanceDiskOptions.InstanceDiskPatch)
 	if err != nil {
@@ -6538,7 +6546,7 @@ func (vpc *VpcV1) CreateInstanceVolumeAttachmentWithContext(ctx context.Context,
 
 	builder.AddQuery("version", fmt.Sprint(*vpc.Version))
 	builder.AddQuery("generation", fmt.Sprint(*vpc.generation))
-
+	builder.AddQuery("maturity", "beta")
 	body := make(map[string]interface{})
 	if createInstanceVolumeAttachmentOptions.Volume != nil {
 		body["volume"] = createInstanceVolumeAttachmentOptions.Volume
@@ -6670,7 +6678,7 @@ func (vpc *VpcV1) GetInstanceVolumeAttachmentWithContext(ctx context.Context, ge
 
 	builder.AddQuery("version", fmt.Sprint(*vpc.Version))
 	builder.AddQuery("generation", fmt.Sprint(*vpc.generation))
-
+	builder.AddQuery("maturity", "beta")
 	request, err := builder.Build()
 	if err != nil {
 		return
@@ -6737,7 +6745,7 @@ func (vpc *VpcV1) UpdateInstanceVolumeAttachmentWithContext(ctx context.Context,
 
 	builder.AddQuery("version", fmt.Sprint(*vpc.Version))
 	builder.AddQuery("generation", fmt.Sprint(*vpc.generation))
-
+	builder.AddQuery("maturity", "beta")
 	_, err = builder.SetBodyContentJSON(updateInstanceVolumeAttachmentOptions.VolumeAttachmentPatch)
 	if err != nil {
 		return
@@ -12384,6 +12392,7 @@ func (vpc *VpcV1) ListVolumeProfilesWithContext(ctx context.Context, listVolumeP
 
 	builder.AddQuery("version", fmt.Sprint(*vpc.Version))
 	builder.AddQuery("generation", fmt.Sprint(*vpc.generation))
+	builder.AddQuery("maturity", "beta")
 	if listVolumeProfilesOptions.Start != nil {
 		builder.AddQuery("start", fmt.Sprint(*listVolumeProfilesOptions.Start))
 	}
@@ -12453,7 +12462,7 @@ func (vpc *VpcV1) GetVolumeProfileWithContext(ctx context.Context, getVolumeProf
 
 	builder.AddQuery("version", fmt.Sprint(*vpc.Version))
 	builder.AddQuery("generation", fmt.Sprint(*vpc.generation))
-
+	builder.AddQuery("maturity", "beta")
 	request, err := builder.Build()
 	if err != nil {
 		return
@@ -12509,6 +12518,7 @@ func (vpc *VpcV1) ListVolumesWithContext(ctx context.Context, listVolumesOptions
 
 	builder.AddQuery("version", fmt.Sprint(*vpc.Version))
 	builder.AddQuery("generation", fmt.Sprint(*vpc.generation))
+	builder.AddQuery("maturity", "beta")
 	if listVolumesOptions.Start != nil {
 		builder.AddQuery("start", fmt.Sprint(*listVolumesOptions.Start))
 	}
@@ -12594,7 +12604,7 @@ func (vpc *VpcV1) CreateVolumeWithContext(ctx context.Context, createVolumeOptio
 
 	builder.AddQuery("version", fmt.Sprint(*vpc.Version))
 	builder.AddQuery("generation", fmt.Sprint(*vpc.generation))
-
+	builder.AddQuery("maturity", "beta")
 	_, err = builder.SetBodyContentJSON(createVolumeOptions.VolumePrototype)
 	if err != nil {
 		return
@@ -12665,7 +12675,7 @@ func (vpc *VpcV1) DeleteVolumeWithContext(ctx context.Context, deleteVolumeOptio
 
 	builder.AddQuery("version", fmt.Sprint(*vpc.Version))
 	builder.AddQuery("generation", fmt.Sprint(*vpc.generation))
-
+	builder.AddQuery("maturity", "beta")
 	request, err := builder.Build()
 	if err != nil {
 		return
@@ -12717,7 +12727,7 @@ func (vpc *VpcV1) GetVolumeWithContext(ctx context.Context, getVolumeOptions *Ge
 
 	builder.AddQuery("version", fmt.Sprint(*vpc.Version))
 	builder.AddQuery("generation", fmt.Sprint(*vpc.generation))
-
+	builder.AddQuery("maturity", "beta")
 	request, err := builder.Build()
 	if err != nil {
 		return
@@ -12785,7 +12795,7 @@ func (vpc *VpcV1) UpdateVolumeWithContext(ctx context.Context, updateVolumeOptio
 
 	builder.AddQuery("version", fmt.Sprint(*vpc.Version))
 	builder.AddQuery("generation", fmt.Sprint(*vpc.generation))
-
+	builder.AddQuery("maturity", "beta")
 	_, err = builder.SetBodyContentJSON(updateVolumeOptions.VolumePatch)
 	if err != nil {
 		return
